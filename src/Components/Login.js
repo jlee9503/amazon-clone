@@ -1,22 +1,42 @@
 import { auth } from "../firebase";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const history = useHistory();
 
 	// function for sign-in event
 	const signIn = (event) => {
 		event.preventDefault(); // prevent refreshing site
+
+		// check if sign-in is valid
+		auth
+			.signInWithEmailAndPassword(email, password)
+			.then((auth) => {
+				if (auth) {
+					history.push("/");
+				}
+			})
+			.catch((error) => alert(error.message));
 	};
 
 	// function for register event
 	const register = (event) => {
 		event.preventDefault(); // prevent refreshing site
 
-		auth.createUserWithEmailAndPassword(email, password)
+		// creating a new account in the firebase database
+		auth
+			.createUserWithEmailAndPassword(email, password)
+			.then((auth) => {
+				if (auth) {
+					history.push("/");
+				}
+			})
+			// throw an error message
+			.catch((error) => alert(error.message));
 	};
 
 	return (
