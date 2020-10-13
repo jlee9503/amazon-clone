@@ -1,15 +1,17 @@
 // creating an empty basket (no item in the initial shopping list)
 export const initialState = {
   basket: [],
+  user: ''
 }
 // Selector (for calculating subtotal amount)
 export const getBasketTotal = (basket) =>
   basket.reduce((amount, item) => item.price + amount, 0);
 
 // ACTIONS
-const ACTIONS = {
+export const ACTIONS = {
   ADD_TO_BASKET: 'ADD_TO_BASKET',
-  REMOVE_FROM_BASKET: 'REMOVE_FROM_BASKET'
+  REMOVE_FROM_BASKET: 'REMOVE_FROM_BASKET',
+  SET_USER: 'SET_USER'
 }
 
 // create a reducer (parameter: state and action)
@@ -42,7 +44,11 @@ const reducer = (state, action) => {
         basket: newBasket,
       };
 
-
+    case ACTIONS.SET_USER:
+      return {
+        ...state,
+        user: action.user,
+      }
     default:
       return state;
   }

@@ -5,12 +5,32 @@ import Home from "./Components/Home";
 import Checkout from "./Components/Checkout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./Components/Login";
+import { auth } from './firebase';
+import { useStateValue } from './Components/StateProvider';
 
 function App() {
+  const [{ }, dispatch] = useStateValue();
+
   // tracking logged in user
   useEffect(() => {
-    
-  })
+    auth.onAuthStateChanged(authUser => {
+      // console.log(authUser);
+
+      // when user is logged in
+      if (authUser) {
+        dispatch({
+          type: 'SET_USER',
+          user: authUser
+        })
+      } else {
+        // when user is logged out
+        dispatch({
+          type: 'SET_USER',
+          user: null
+        })
+      }
+    })
+  }, [])
 
 	return (
 		<Router>
