@@ -5,39 +5,39 @@ import Home from "./Components/Home";
 import Checkout from "./Components/Checkout";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./Components/Login";
-import { auth } from './firebase';
-import { useStateValue } from './Components/StateProvider';
-import Payment from './Components/Payment';
+import { auth } from "./firebase";
+import { useStateValue } from "./Components/StateProvider";
+import Payment from "./Components/Payment";
 
 function App() {
-  const [{ }, dispatch] = useStateValue();
+	const [{}, dispatch] = useStateValue();
 
-  // tracking logged in user
-  useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
-      // console.log(authUser);
+	// tracking logged in user
+	useEffect(() => {
+		auth.onAuthStateChanged((authUser) => {
+			// console.log(authUser);
 
-      // when user is logged in
-      if (authUser) {
-        dispatch({
-          type: 'SET_USER',
-          user: authUser
-        })
-      } else {
-        // when user is logged out
-        dispatch({
-          type: 'SET_USER',
-          user: null
-        })
-      }
-    })
-  }, [])
+			// when user is logged in
+			if (authUser) {
+				dispatch({
+					type: "SET_USER",
+					user: authUser,
+				});
+			} else {
+				// when user is logged out
+				dispatch({
+					type: "SET_USER",
+					user: null,
+				});
+			}
+		});
+	}, []);
 
 	return (
 		<Router>
 			<div className="app">
-        <Switch>
-          {/* Go to login page */}
+				<Switch>
+					{/* Go to login page */}
 					<Route path="/login">
 						<Login />
 					</Route>
@@ -45,12 +45,12 @@ function App() {
 					<Route path="/checkout">
 						<Header />
 						<Checkout />
-          </Route>
-          {/* Go to payment page */}
-          <Route path='/payment'>
-            <Header />
-            <Payment />
-          </Route>
+					</Route>
+					{/* Go to payment page */}
+					<Route path="/payment">
+						<Header />
+						<Payment />
+					</Route>
 
 					{/* Main page */}
 					<Route path="/">

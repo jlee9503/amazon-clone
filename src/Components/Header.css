@@ -21,9 +21,9 @@
 }
 
 .header-searchInput {
-  width: 100%;
-  padding: 8.1px;
-  border: none;
+	width: 100%;
+	padding: 8.1px;
+	border: none;
 }
 
 .header-searchIcon {
@@ -33,32 +33,32 @@
 }
 
 .header-nav {
-  display: flex;
-  justify-content: space-evenly;
+	display: flex;
+	justify-content: space-evenly;
 }
 
 .header-option {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  margin: 0 10px 0 10px;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	margin: 0 10px 0 10px;
 }
 
 .header-optionOne {
-  font-size: 10px;
+	font-size: 10px;
 }
 
 .header-optionTwo {
-  font-size: 13px;
-  font-weight: 800;
+	font-size: 13px;
+	font-weight: 800;
 }
 
 .header-basketOption {
-  color: white;
-  display: flex;
-  align-items: center;
+	color: white;
+	display: flex;
+	align-items: center;
 }
 
 .header-basketCount {
-  margin: 0 10px;
+	margin: 0 10px;
 }

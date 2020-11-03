@@ -7,11 +7,11 @@ import { useStateValue } from "./StateProvider";
 import { auth } from '../firebase';
 
 function Header() {
-  const [{ basket, user }, dispatch] = useStateValue();
-  
-  const handleLoginAuth = () => {
-    auth.signOut();
-  }
+    const [{ basket, user }, dispatch] = useStateValue();
+    
+    const handleLoginAuth = () => {
+        auth.signOut();
+    }
 
 	return (
 		<div className="header">
